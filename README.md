@@ -7,7 +7,6 @@ Welcome to ExamPaperHub, your ultimate destination for accessing and sharing exa
 - Installation
 - Usage
 - Contributing
-- License
 - Contact
 # About Us
 ExamPaperHub is a platform dedicated to providing students with a comprehensive resource for accessing previous year question papers. Understanding the significance of thorough preparation, we have created a seamless platform for sharing and accessing question papers based on course codes and examination types. Dive into a wealth of resources to enhance your study experience and excel in your academic pursuits. Unlock the power of past exams to unlock your future success. Start exploring now!
@@ -40,8 +39,7 @@ Create a new branch.
 Make your changes and commit them.
 Push to the branch.
 Create a pull request on GitHub.
-# License
-This project is licensed under the MIT License. See the LICENSE file for more information.
+
 
 # Contact
 If you have any questions or need further information, please feel free to contact us:
