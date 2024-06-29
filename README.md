@@ -9,7 +9,7 @@ Welcome to ExamPaperHub, your ultimate destination for accessing and sharing exa
 - Contributing
 - Contact
 # About Us
-ExamPaperHub is a platform dedicated to providing students with a comprehensive resource for accessing previous year question papers. Understanding the significance of thorough preparation, we have created a seamless platform for sharing and accessing question papers based on course codes and examination types. Dive into a wealth of resources to enhance your study experience and excel in your academic pursuits. Unlock the power of past exams to unlock your future success. Start exploring now!
+Welcome Vitians, your ultimate destination for accessing previous year question papers effortlessly. We understand the importance of thorough preparation, which is why we've created a seamless platform for sharing question papers based on course codes and examination types. Dive into a wealth of resources to enhance your study experience and excel in your academic pursuits. Unlock the power of past exams to unlock your future success. Start exploring now!
 
 # Features
 - Upload Question Papers: Easily upload exam question papers by providing details such as subject, course code, exam type, year, and semester.
