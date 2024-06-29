@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ExamPaperHub</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div><a href="#home" class="logo"><i class="fas fa-file-alt"></i> &nbsp; Exam Paper Hub</a></div>
+        
+            <label for="check" class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="#upload" id="upload-link">Upload</a></li>
+                <li><a href="#browse" id="browse-link">Browse</a></li>
+                <li><a href="#login" id="login-link">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>Welcome to ExamPaperHub</h1>
+            <p>Your go-to platform for sharing and accessing question papers.</p>
+            <a href="#login" class="cta-button" id="get-started-button">Get Started</a>
+        </section>      
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Welcome Vitians, your ultimate destination for accessing previous year question papers effortlessly. We understand the importance of thorough preparation, which is why we've created a seamless platform for sharing question papers based on course codes and examination types. Dive into a wealth of resources to enhance your study experience and excel in your academic pursuits. Unlock the power of past exams to unlock your future success. Start exploring now!"</p>
+        </section>
+
+        <section id="upload" class="hidden">
+            <h2>Upload a Question Paper</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="course-code">Course Code:</label>
+                    <input type="text" id="course-code" name="course-code" required>
+                </div>
+                <div class="form-group">
+                    <label for="exam-type">Exam Type:</label>
+                    <select id="exam-type" name="exam-type" required>
+                        <option value="">Select exam type</option>
+                        <option value="CAT1">CAT1</option>
+                        <option value="CAT2">CAT2</option>
+                        <option value="FAT">FAT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" min="1900" max="2099" step="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester:</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Select semester</option>
+                        <option value="fall">Fall</option>
+                        <option value="Winter">Winter</option>
+                        <option value="summer">Summer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="file">File:</label>
+                    <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.txt,.xls,.xlsx,.ppt,.pptx" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description (optional):</label>
+                    <textarea id="description" name="description" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Upload Question Paper</button>
+            </form>
+        </section>
+
+        <section id="browse" class="hidden">
+            <h2>Browse Question Papers</h2>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for subjects or course codes...">
+                <button id="search-button">Search</button>
+            </div>
+            <div class="paper-list">
+                <div class="paper-item">
+                    <h3>Differential equations</h3>
+                    <h4>BMAT102L</h4>
+                    <p>Final Exam 2023</p>
+                    <a href="#" class="download-btn">Download</a>
+                </div>
+                <div class="paper-item">
+                    <h3>Data structure & algorithm</h3>
+                    <h4>BITE102L</h4>
+                    <p>Midterm Exam 2022</p>
+                    <a href="#" class="download-btn">Download</a>
+                </div>
+                <div class="paper-item">
+                    <h3>Web development</h3>
+                    <h4>BCSE101L</h4>
+                    <p>Final Exam 2023</p>
+                    <a href="#" class="download-btn">Download</a>
+                </div>
+                <div class="paper-item">
+                    <h3>BEEE</h3>
+                    <h4>BEEE101</h4>
+                    <p>Midterm Exam 2022</p>
+                    <a href="#" class="download-btn">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="hidden">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#upload">Upload</a></li>
+                    <li><a href="#browse">Browse</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+                <p><i class="fas fa-envelope"></i> &nbsp; Email: ExamPaperHub@gmail.com</p>
+                <p><i class="fas fa-mobile-alt"></i> &nbsp; Phone: (+69) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="fab fa-facebook"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 ExamPaperHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
