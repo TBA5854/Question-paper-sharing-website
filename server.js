@@ -1,16 +1,18 @@
-const express =require('express')
+const express = require('express');
 const app = express();
-require('./routes/files');
+const connectDB = require('./config/db');
+const filesRoute = require('./routes/files'); // Import the router
 
-
-
-const connectDB=require('./config/db');
+// Connect to the database
 connectDB();
 
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-app.use('/api/files',require('./routes/files'));
-app.use('/files')
-app.listen(process.env.PORT,()=>{
-    console.log("listening on port 3000")
-})
- 
+// Use the files route
+app.use('/api/files', filesRoute);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+});
