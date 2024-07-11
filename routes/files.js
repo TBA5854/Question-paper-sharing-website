@@ -22,9 +22,11 @@ let upload = multer({
 router.post('/', (req, res) => {
     upload(req, res, (err) => {
         if (err) {
+            console.log(err)
             return res.status(500).send({ error: err.message });
         }
-
+        // --> Rest of the form data
+        console.log(req.body)
         if (!req.file) {
             return res.json("Please provide a file.");
         }
@@ -36,12 +38,22 @@ router.post('/', (req, res) => {
             size: req.file.size
         });
 
-        file.save().then(response => {
-            return res.json({ file: `http://localhost:3000/files/${response.uuid}` });
+        file.save().then((response) => {
+            return res.json({ file: `http://localhost:3000/api/files/${response.uuid}` });
         }).catch(error => {
             return res.status(500).send({ error: error.message });
         });
     });
 });
+
+//test
+router.get('/', async (req, res) => {
+    console.log('del')
+    // await File.deleteMany();
+    var t = await File.find({});
+    //   res.send('GET request to the homepage')
+    console.log(t)
+    res.end()
+})
 
 module.exports = router;
