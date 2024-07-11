@@ -1,0 +1,33 @@
+<%- include('partials/header'); -%>
+    <section id="browse">
+        <h2>Browse Question Papers</h2>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for subjects or course codes...">
+            <button id="search-button">Search</button>
+        </div>
+        <div class="paper-list">
+            <% if (result.length>0) { %>
+            <% result.forEach(function(obj) { %>
+                <div class="paper-item">
+                    <h3>
+                        <%= obj.subject %>
+                    </h3>
+                    <h4>
+                        <%= obj.courseCode %>
+                    </h4>
+                    <p>
+                        <%= obj.examType + " - " + obj.year %>
+                    </p>
+                    <a href= '<%=obj.path  %>' class="download-btn">Download</a>
+                </div>
+                <% }); %>
+                <% } else { %>
+                    <div>
+                        <center>
+                            <h2>No Results Found</h2>
+                        </center>
+                    </div>
+               <% } %>
+        </div>
+    </section>
+    <%- include('partials/footer'); -%>

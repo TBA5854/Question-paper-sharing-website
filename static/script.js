@@ -3,48 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav-links a');
     const logo = document.querySelector('.logo');
     const getStartedButton = document.getElementById('get-started-button');
-
-    function hideAllSections() {
-        sections.forEach(section => {
-            section.classList.add('hidden');
-        });
-    }
-
-    function showSection(id) {
-        hideAllSections();
-        const section = document.getElementById(id);
-        if (section) {
-            section.classList.remove('hidden');
-        }
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const sectionId = this.getAttribute('href').substring(1);
-            showSection(sectionId);
-        });
-    });
-
-    logo.addEventListener('click', function (e) {
-        e.preventDefault();
-        showSection('home');
-        document.getElementById('about').classList.remove('hidden');
-    });
-
-
-    if (getStartedButton) {
-        getStartedButton.addEventListener('click', function (e) {
-            e.preventDefault();
-            showSection('login');
-        });
-    }
-
-
-    showSection('home');
-    document.getElementById('about').classList.remove('hidden');
-
-
     const uploadForm = document.getElementById('upload-form');
     if (uploadForm) {
         uploadForm.addEventListener('submit', async function (e) {
@@ -69,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             //     console.log(key, value);
             // }
             try {
-                const response = await fetch('http://localhost:3000/api/files', {
+                const response = await fetch('https://dinosaur-keen-bengal.ngrok-free.app/api/files', {
                     method: 'POST',
                     body: formUploadData
                 });
@@ -89,10 +47,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
-        loginForm.addEventListener('submit', function (e) {
+        loginForm.addEventListener('submit', async function (e) {
             e.preventDefault();
+            // alert('Login successful!');
+            const formUploadData = new FormData();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            formUploadData.append('username', username);
+            formUploadData.append('password', password);
+            try {
+                const response = await fetch('https://dinosaur-keen-bengal.ngrok-free.app/auth/login', {
+                    method: 'POST',
+                    body: formUploadData
+                });
+                if (response.ok) {
+                    // alert('File uploaded successfully!')
+                    // alert(response)
+                } else {
+                    console.log(response)
+                    alert(JSON.stringify(response.json))
+                }
+            } catch (err) {
+                console.log('ERROR SOMEWHER :', err)
+            }
+        });
+    }
 
-            alert('Login successful!');
+    const signupForm = document.getElementById('signup-form');
+    if (signup) {
+        signupForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formUploadData = new FormData();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            formUploadData.append('username', username);
+            formUploadData.append('password', password);
+            try {
+                const response = await fetch('https://dinosaur-keen-bengal.ngrok-free.app/auth/signup', {
+                    method: 'POST',
+                    body: formUploadData
+                });
+                if (response.ok) {
+                    // alert('File uploaded successfully!')
+                    // alert(response)
+                } else {
+                    alert(response.json)
+                    // alert('File uploaded failed!')
+                }
+            } catch (err) {
+                console.log('ERROR SOMEWHER :', err)
+            }
         });
     }
 
@@ -101,8 +105,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (searchButton && searchInput) {
         searchButton.addEventListener('click', function () {
             const searchTerm = searchInput.value.toLowerCase();
+            console.log(searchTerm);
+            // alert(`Searching for: ${searchTerm}`);
+            // const query = document.getElementById('search-button');
+            window.location.href = 'https://dinosaur-keen-bengal.ngrok-free.app/browse?q='+searchTerm;
 
-            alert(`Searching for: ${searchTerm}`);
         });
     }
 

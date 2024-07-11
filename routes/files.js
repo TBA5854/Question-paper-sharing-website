@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const File = require('../models/file');
 const { v4: uuidv4 } = require('uuid');
+const { authverify } = require('./authRoutes');
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ let upload = multer({
     limits: { fileSize: 1000000 * 100 }, // 100MB
 }).single('file'); // Ensure the field name is correct
 
-router.post('/', (req, res) => {
+router.post('/', authverify,(req, res) => {
     upload(req, res, (err) => {
         if (err) {
             console.log(err)
@@ -32,7 +33,12 @@ router.post('/', (req, res) => {
         }
 
         const file = new File({
-            filename: req.file.filename,
+            fileName: req.file.filename,
+            subject: req.body.subject,
+            courseCode: req.body.course,
+            examType: req.body.examtype,
+            year: req.body.year,
+            sem: req.body.sem,
             uuid: uuidv4(),
             path: req.file.path,
             size: req.file.size
@@ -41,6 +47,7 @@ router.post('/', (req, res) => {
         file.save().then((response) => {
             return res.json({ file: `http://localhost:3000/api/files/${response.uuid}` });
         }).catch(error => {
+            console.log(error)
             return res.status(500).send({ error: error.message });
         });
     });
