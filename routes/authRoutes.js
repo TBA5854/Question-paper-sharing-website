@@ -4,18 +4,20 @@ const mongooose = require('mongoose')
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const multer = require('multer');
-const cookie = require('cookie-parser');
 const cors = require('cors');
 
 function authverify(req, res, next) {
     var incomimg_token = req.cookies;
-    
-    if (!incomimg_token || !incomimg_token['X-Auth-Token']) {
+    console.log(incomimg_token);
+    if (!incomimg_token) {
         // res.status(400).send("No token");
+        res.redirect("/signup");
+    }
+    if (!incomimg_token['X-Auth-Token']) {
         res.redirect("/login");
     }
-    console.log(incomimg_token);
-    jwt.verify(incomimg_token, 'This is supposed to be secret , made with <3 by tba', (err, decodedtoken) => {
+    // console.log(incomimg_token);/
+    jwt.verify(incomimg_token['X-Auth-Token'], 'This is supposed to be secret , made with <3 by tba', (err, decodedtoken) => {
         if (err) {
             // console.log(err);
             res.redirect("/login");
@@ -40,7 +42,8 @@ router.post('/auth/login', multer().none(), async (req, res) => {
     var user_id = loggingUser._id;
     var token = jwt.sign({ user_id }, 'This is supposed to be secret , made with <3 by tba', { expiresIn: '180d' });
     res.cookie('X-Auth-Token', token, { maxAge: 86400000 });
-        res.redirect('/');
+        // res.redirect('/');
+        res.status(200).end();
     }
 })
 
@@ -59,7 +62,7 @@ router.post('/auth/signup', multer().none(),async (req, res) => {
             var token = jwt.sign({ user_id }, 'This is supposed to be secret , made with <3 by tba', { expiresIn: '180d' });
             res.cookie('X-Auth-Token', token , {maxAge: 86400000});
             // res.status(201).json({ token, usr });
-            res.redirect('/auth/login');
+            res.redirect('/login');
         } catch (err) {
             res.status(500).send(err.message);
         }

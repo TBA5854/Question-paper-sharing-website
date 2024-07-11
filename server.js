@@ -4,6 +4,7 @@ const File = require('./models/file');
 const connectDB = require('./config/db');
 const cors = require('cors')
 const filesRoute = require('./routes/files'); // Import the router
+const cookieparser = require('cookie-parser');
 const {router,authverify} = require('./routes/authRoutes'); // Import the router
 // const ejsLint = require('ejs-lint');
 // Connect to the database
@@ -15,7 +16,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use('/static', express.static('static'))
 app.use('/static', express.static('uploads'))
-
+app.use(cookieparser())
 app.set('view engine', 'ejs');
 // Use the files route
 app.use(router);
@@ -36,7 +37,7 @@ app.get('/upload', authverify,(req, res) => {
     res.render('upload')
 })
 app.get('/uploads/:id',authverify, (req, res) => {
-    res.sendFile(__dirname+"/uploads/"+req.params['id'])
+    res.download(__dirname+"/uploads/"+req.params['id'])
 })
 // function sleep(ms) {
 //     return new Promise((resolve) => {
