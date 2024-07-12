@@ -46,7 +46,7 @@ app.get('/uploads/:id',authverify, (req, res) => {
 //   } 
 // app.get('/')
 
-app.get('/browse',authverify, async (req, res) => {
+app.get('/browse', async (req, res) => {
     var query = req.query.q;
     console.log(query);
     if (!query) {

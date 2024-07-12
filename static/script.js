@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             //     console.log(key, value);
             // }
             try {
-                const response = await fetch('https://djr9rmk6-3000.inc1.devtunnels.ms/api/files', {
+                const response = await fetch('https://dinosaur-keen-bengal.ngrok-free.app/api/files', {
                     method: 'POST',
                     redirect: 'follow',
                     body: formUploadData
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             formUploadData.append('username', username);
             formUploadData.append('password', password);
             try {
-                const response = await fetch('https://djr9rmk6-3000.inc1.devtunnels.ms/auth/login', {
+                const response = await fetch('https://dinosaur-keen-bengal.ngrok-free.app/auth/login', {
                     method: 'POST',
                     redirect: 'follow',
                     body: formUploadData
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // alert(response)
 
                 } else {
-                    window.location.href = 'https://djr9rmk6-3000.inc1.devtunnels.ms/';
+                    window.location.href = 'https://dinosaur-keen-bengal.ngrok-free.app';
                 }
             } catch (err) {
                 console.log('ERROR SOMEWHER :', err)
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const signupForm = document.getElementById('signup-form');
-    if (signup) {
+    if (signupForm) {
         signupForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const formUploadData = new FormData();
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
             formUploadData.append('username', username);
             formUploadData.append('password', password);
             try {
-                const response = await fetch('https://djr9rmk6-3000.inc1.devtunnels.ms/auth/signup', {
+                const response = await fetch('https://dinosaur-keen-bengal.ngrok-free.app/auth/signup', {
                     method: 'POST',
                     redirect: 'follow',
                     body: formUploadData
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // alert('File uploaded successfully!')
                     // alert(response)
                 } else {
-                    window.location.href = 'https://djr9rmk6-3000.inc1.devtunnels.ms/';
+                    window.location.href = 'https://dinosaur-keen-bengal.ngrok-free.app';
                 }
             } catch (err) {
                 console.log('ERROR SOMEWHER :', err)
@@ -108,11 +108,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-input');
     if (searchButton && searchInput) {
         searchButton.addEventListener('click', function () {
-            const searchTerm = searchInput.value.toLowerCase();
+            const searchTerm = searchInput.value;
             console.log(searchTerm);
             // alert(`Searching for: ${searchTerm}`);
             // const query = document.getElementById('search-button');
-            window.location.href = 'https://djr9rmk6-3000.inc1.devtunnels.ms/browse?q='+searchTerm;
+            window.location.href = 'https://dinosaur-keen-bengal.ngrok-free.app/browse?q='+searchTerm;
 
         });
     }
