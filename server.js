@@ -6,6 +6,7 @@ const cors = require('cors')
 const filesRoute = require('./routes/files'); // Import the router
 const cookieparser = require('cookie-parser');
 const {router,authverify} = require('./routes/authRoutes'); // Import the router
+const Fuse = require('fuse.js');
 // const ejsLint = require('ejs-lint');
 // Connect to the database
 connectDB();
@@ -47,15 +48,19 @@ app.get('/uploads/:id',authverify, (req, res) => {
 // app.get('/')
 
 app.get('/browse', async (req, res) => {
-    var query = req.query.q;
+    var query = req.query.q ?? "";
+    var allResult = await File.find({});
+    var result=[]
     console.log(query);
-    if (!query) {
-        result = await File.find({});
-    } else {
-        const code = await File.find({ courseCode: query });
-        const sub = await File.find({ subject: query });
-        result = code.concat(sub);
-    }
+        if (query) {
+            const fuse = new Fuse(allResult,{keys:['subject','courseCode','examType','year','sem']})
+            var returnedResult = fuse.search(query);
+            returnedResult.forEach(element => {
+                result.push(element.item)
+            });
+        } else {
+            result=allResult
+        }
     // await sleep(10000)
     console.log(result)
     // res.end()

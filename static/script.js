@@ -106,6 +106,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const searchButton = document.getElementById('search-button');
     const searchInput = document.getElementById('search-input');
+
+    if (window.location.href.startsWith('https://dinosaur-keen-bengal.ngrok-free.app/browse?q=')) {
+        console.log('hiiii')
+        document.getElementById('search-input').value = decodeURIComponent(window.location.href).slice(53)
+    }
+
     if (searchButton && searchInput) {
         searchButton.addEventListener('click', function () {
             const searchTerm = searchInput.value;
